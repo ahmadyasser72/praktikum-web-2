@@ -16,7 +16,7 @@
       ><i class="fas fa-building me-2"></i>Bagian</a
     >
     <a
-      href="#"
+      href="?page=karyawan"
       class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
       ><i class="fas fa-users me-2"></i>Karyawan</a
     >
