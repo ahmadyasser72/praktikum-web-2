@@ -49,7 +49,7 @@ include "database/connection.php";
           <th> <?php echo $n++ ?> </th>
           <td> <?php echo $row["nama"] ?> </td>
           <td>
-            <a href="#" class="btn btn-primary">
+            <a href="?page=bagianubah&id=<?php echo $row['id'] ?>" class="btn btn-primary">
               <i class="fa fa-edit"></i>
               Ubah
             </a>
