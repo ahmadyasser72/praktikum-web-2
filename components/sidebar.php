@@ -21,7 +21,7 @@
       ><i class="fas fa-users me-2"></i>Karyawan</a
     >
     <a
-      href="#"
+      href="?page=pilihbulantahunpenggajian"
       class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
       ><i class="fas fa-money-bill me-2"></i>Penggajian</a
     >
