@@ -1,6 +1,5 @@
 <?php
-include "database/connection.php";
-?>
+include "database/connection.php"; ?>
 
 <div class="row">
   <div class="col">
@@ -16,23 +15,19 @@ include "database/connection.php";
 <div class="row mt-3">
   <div class="col">
     <?php
-      $selectSQL = "SELECT K.*, B.nama AS nama_bagian FROM karyawan AS K
+    $selectSQL = "SELECT K.*, B.nama AS nama_bagian FROM karyawan AS K
         LEFT JOIN bagian AS B ON K.bagian_id = B.id";
-      $result = mysqli_query($connection, $selectSQL);
-      if (!$result) { ?>
+    $result = mysqli_query($connection, $selectSQL);
+    if (!$result) { ?>
         <div class="alert alert-danger" role="alert">
-          <?php echo mysqli_error($connection) ?>
-        </div> <?php 
-        return;
-      } 
+          <?php echo mysqli_error($connection); ?>
+        </div> <?php return;}
 
-      if (mysqli_num_rows($result) == 0) { ?>
+    if (mysqli_num_rows($result) == 0) { ?>
         <div class="alert alert-light" role="alert">
           Data kosong
         </div>
-        <?php
-        return;
-      }
+        <?php return;}
     ?>
 
     <table class="table bg-white rounded shadow-sm table-hover">
@@ -49,23 +44,25 @@ include "database/connection.php";
         $n = 1;
         while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr class="align-middle">
-          <th scope="row"> <?php echo $row["nik"] ?> </th>
-          <td> <?php echo $row["nama"] ?> </td>
-          <td> <?php echo $row["nama_bagian"] ?> </td>
+          <th scope="row"> <?php echo $row["nik"]; ?> </th>
+          <td> <?php echo $row["nama"]; ?> </td>
+          <td> <?php echo $row["nama_bagian"]; ?> </td>
           <td>
-            <a href="?page=karyawanubah&nik=<?php echo $row['nik'] ?>" class="btn btn-primary">
+            <a href="?page=karyawanubah&nik=<?php echo $row[
+                "nik"
+            ]; ?>" class="btn btn-primary">
               <i class="fa fa-edit"></i>
               Ubah
             </a>
-            <a href="?page=karyawanhapus&nik=<?php echo $row['nik'] ?>"
+            <a href="?page=karyawanhapus&nik=<?php echo $row["nik"]; ?>"
                onclick="javascript: return confirm('Konfirmasi data akan dihapus?')"
                class="btn btn-danger">
               <i class="fa fa-trash"></i>
               Hapus
             </a>
           </td>
-        </tr> <?php
-        } ?>
+        </tr> <?php }
+        ?>
       </tbody>
     </table>
   </div>

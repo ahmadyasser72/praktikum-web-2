@@ -15,32 +15,27 @@
     include "database/connection.php";
 
     if (isset($_POST["simpan_button"])) {
-      $nama = $_POST["nama"];
+        $nama = $_POST["nama"];
 
-      $checkAdaSQL = "SELECT * FROM bagian WHERE nama = '$nama'";
-      $resultCheckAda = mysqli_query($connection, $checkAdaSQL);
-      $sudahAda = mysqli_num_rows($resultCheckAda) > 0;
+        $checkAdaSQL = "SELECT * FROM bagian WHERE nama = '$nama'";
+        $resultCheckAda = mysqli_query($connection, $checkAdaSQL);
+        $sudahAda = mysqli_num_rows($resultCheckAda) > 0;
 
-      if ($sudahAda) { ?>
+        if ($sudahAda) { ?>
         <div class="alert alert-danger" role="alert">
           <i class="fa fa-exclamation-circle"></i>
           Nama bagian sudah ada
-        </div> <?php
-      } else {
-        $insertSQL = "INSERT INTO bagian SET nama = '$nama'";
-        $resultInsert = mysqli_query($connection, $insertSQL);
-        if (!$resultInsert) { ?>
+        </div> <?php } else {$insertSQL = "INSERT INTO bagian SET nama = '$nama'";
+            $resultInsert = mysqli_query($connection, $insertSQL);
+            if (!$resultInsert) { ?>
           <div class="alert alert-danger" role="alert">
             <i class="fa fa-exclamation-circle"></i>
-            <?php echo mysqli_error($connection) ?>
-          </div> <?php
-        } else { ?>
+            <?php echo mysqli_error($connection); ?>
+          </div> <?php } else { ?>
           <div class="alert alert-success" role="alert">
             <i class="fa fa-check-circle"></i>
             Data berhasil disimpan
-          </div> <?php
-        }
-      }
+          </div> <?php }}
     }
     ?>
   </div>

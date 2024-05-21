@@ -4,38 +4,38 @@ $bagian_active = "fw-bold";
 $karyawan_active = "fw-bold";
 $penggajian_active = "fw-bold";
 
-if (isset($_GET['page'])) {
-  $page = $_GET['page'];
+if (isset($_GET["page"])) {
+    $page = $_GET["page"];
 } else {
-  $page = '';
+    $page = "";
 }
 
 switch ($page) {
-  case "":
-  case "dashboard":
-    $dashboard_active = "active";
-    break;
-  case "bagian":
-  case "bagiantambah":
-  case "bagianubah":
-  case "bagianhapus":
-    $bagian_active = "active";
-    break;
-  case "karyawan":
-  case "karyawantambah":
-  case "karyawanubah":
-  case "karyawanhapus":
-    $karyawan_active = "active";
-    break;
-  case "penggajian":
-  case "penggajiantambah":
-  case "penggajianhapus":
-  case "pilihbulantahunpenggajian":
-  case "pilihkaryawanpenggajian":
-    $penggajian_active = "active";
-    break;
-  default:
-    $dash_board_active = "active";
+    case "":
+    case "dashboard":
+        $dashboard_active = "active";
+        break;
+    case "bagian":
+    case "bagiantambah":
+    case "bagianubah":
+    case "bagianhapus":
+        $bagian_active = "active";
+        break;
+    case "karyawan":
+    case "karyawantambah":
+    case "karyawanubah":
+    case "karyawanhapus":
+        $karyawan_active = "active";
+        break;
+    case "penggajian":
+    case "penggajiantambah":
+    case "penggajianhapus":
+    case "pilihbulantahunpenggajian":
+    case "pilihkaryawanpenggajian":
+        $penggajian_active = "active";
+        break;
+    default:
+        $dash_board_active = "active";
 }
 ?>
 

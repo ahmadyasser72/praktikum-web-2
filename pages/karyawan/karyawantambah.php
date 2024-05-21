@@ -15,43 +15,38 @@
     include "database/connection.php";
 
     if (isset($_POST["simpan_button"])) {
-      $nik = $_POST["nik"];
-      $nama = $_POST["nama"];
-      $tanggal_mulai = $_POST["tanggal_mulai"];
-      $gaji_pokok = $_POST["gaji_pokok"];
-      $status_karyawan = $_POST["status_karyawan"];
-      $bagian_id = $_POST["bagian_id"];
+        $nik = $_POST["nik"];
+        $nama = $_POST["nama"];
+        $tanggal_mulai = $_POST["tanggal_mulai"];
+        $gaji_pokok = $_POST["gaji_pokok"];
+        $status_karyawan = $_POST["status_karyawan"];
+        $bagian_id = $_POST["bagian_id"];
 
-      $checkAdaSQL = "SELECT * FROM karyawan WHERE nik = '$nik'";
-      $resultCheckAda = mysqli_query($connection, $checkAdaSQL);
-      $sudahAda = mysqli_num_rows($resultCheckAda) > 0;
+        $checkAdaSQL = "SELECT * FROM karyawan WHERE nik = '$nik'";
+        $resultCheckAda = mysqli_query($connection, $checkAdaSQL);
+        $sudahAda = mysqli_num_rows($resultCheckAda) > 0;
 
-      if ($sudahAda) { ?>
+        if ($sudahAda) { ?>
         <div class="alert alert-danger" role="alert">
           <i class="fa fa-exclamation-circle"></i>
           Nomor Induk Karyawan (NIK) sama sudah ada
-        </div> <?php
-      } else {
-        $insertSQL = "INSERT INTO karyawan SET
+        </div> <?php } else {$insertSQL = "INSERT INTO karyawan SET
           nik = '$nik',
           nama = '$nama',
           tanggal_mulai = '$tanggal_mulai',
           gaji_pokok = '$gaji_pokok',
           status_karyawan = '$status_karyawan',
           bagian_id = '$bagian_id'";
-        $resultInsert = mysqli_query($connection, $insertSQL);
-        if (!$resultInsert) { ?>
+            $resultInsert = mysqli_query($connection, $insertSQL);
+            if (!$resultInsert) { ?>
           <div class="alert alert-danger" role="alert">
             <i class="fa fa-exclamation-circle"></i>
-            <?php echo mysqli_error($connection) ?>
-          </div> <?php
-        } else { ?>
+            <?php echo mysqli_error($connection); ?>
+          </div> <?php } else { ?>
           <div class="alert alert-success" role="alert">
             <i class="fa fa-check-circle"></i>
             Data berhasil disimpan
-          </div> <?php
-        }
-      }
+          </div> <?php }}
     }
     ?>
   </div>
@@ -98,26 +93,21 @@
           $resultSelect = mysqli_query($connection, $selectSQL);
           if (!$resultSelect) { ?>
             <div class="alert alert-danger" role="alert">
-              <?php echo mysqli_error($connection) ?>
-            </div> <?php
-            return;
-          }
+              <?php echo mysqli_error($connection); ?>
+            </div> <?php return;}
 
           if (mysqli_num_rows($resultSelect) == 0) { ?>
             <div class="alert alert-danger" role="alert">
               Data Kosong
-            </div> <?php
-            return;
-          }
+            </div> <?php return;}
           ?>
           
           <select class="form-select" name="bagian_id">
             <option value="" selected> -- Pilih Bagian -- </option>
-            <?php
-            while ($row = mysqli_fetch_assoc($resultSelect)) { ?>
-              <option value="<?php echo $row['id'] ?>"> <?php echo $row['nama'] ?> </option> <?php
-            }
-            ?>
+            <?php while ($row = mysqli_fetch_assoc($resultSelect)) { ?>
+              <option value="<?php echo $row["id"]; ?>"> <?php echo $row[
+    "nama"
+]; ?> </option> <?php } ?>
           </select>
         </div>
 

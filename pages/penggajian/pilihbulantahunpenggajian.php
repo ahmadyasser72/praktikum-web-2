@@ -12,39 +12,32 @@
     $resultSelect = mysqli_query($connection, $selectSQL);
     if (!$resultSelect) { ?>
       <div class="alert alert-danger" role="alert">
-        <?php echo mysqli_error($connection) ?>
-      </div> <?php
-      return;
-    }
+        <?php echo mysqli_error($connection); ?>
+      </div> <?php return;}
 
     if (mysqli_num_rows($resultSelect) == 0) { ?>
       <div class="alert alert-danger" role="alert">
         Data kosong
-      </div> <?php
-      return;
-    }
+      </div> <?php return;}
 
-    if (isset($_POST['lanjut_button'])) {
-      $tahun = $_POST['tahun_select'];
-      $bulan = $_POST['bulan_select'];
+    if (isset($_POST["lanjut_button"])) {
+        $tahun = $_POST["tahun_select"];
+        $bulan = $_POST["bulan_select"];
 
-      if ($bulan == "Semua" && $tahun == "Semua") {
-        $checkSQL = "SELECT * FROM penggajian";
-      } else if ($bulan == "Semua" && $tahun != "Semua") {
-        $checkSQL = "SELECT * FROM penggajian WHERE tahun = $tahun";
-      } else if ($bulan != "Semua" && $tahun != "Semua") {
-        $checkSQL = "SELECT * FROM penggajian WHERE tahun = $tahun AND bulan = $bulan";
-      }
+        if ($bulan == "Semua" && $tahun == "Semua") {
+            $checkSQL = "SELECT * FROM penggajian";
+        } elseif ($bulan == "Semua" && $tahun != "Semua") {
+            $checkSQL = "SELECT * FROM penggajian WHERE tahun = $tahun";
+        } elseif ($bulan != "Semua" && $tahun != "Semua") {
+            $checkSQL = "SELECT * FROM penggajian WHERE tahun = $tahun AND bulan = $bulan";
+        }
 
-      $resultCheck = mysqli_query($connection, $checkSQL);
-      if (mysqli_num_rows($resultSelect) == 0) { ?>
+        $resultCheck = mysqli_query($connection, $checkSQL);
+        if (mysqli_num_rows($resultSelect) == 0) { ?>
         <div class="alert alert-danger" role="alert">
           <i class="fa fa-exclamation-circle"></i>
           Data dengan tahun dan bulan tersebut masih kosong
-        </div> <?php
-      } else {
-        echo "<meta http-equiv='refresh' content='0;url=?page=penggajian&bulan=$bulan&tahun=$tahun'>";
-      }
+        </div> <?php } else {echo "<meta http-equiv='refresh' content='0;url=?page=penggajian&bulan=$bulan&tahun=$tahun'>";}
     }
     ?>
   </div>
@@ -75,12 +68,11 @@
           <label for="tahun_select" class="form-label">Tahun</label>
           <select class="form-select" name="tahun_select">
             <option value="Semua" selected>Semua</option>
-            <?php
-            while ($row = mysqli_fetch_assoc($resultSelect)) { ?>
-              <option value="<?php echo $row['tahun'] ?>"> <?php echo $row['tahun'] ?> </option>
-              <?php
-            }
-            ?>
+            <?php while ($row = mysqli_fetch_assoc($resultSelect)) { ?>
+              <option value="<?php echo $row["tahun"]; ?>"> <?php echo $row[
+    "tahun"
+]; ?> </option>
+              <?php } ?>
           </select>
         </div>
         <div class="col mb-3">

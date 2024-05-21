@@ -14,21 +14,19 @@
     <?php
     include "database/connection.php";
 
-    $id = $_GET['id'];
+    $id = $_GET["id"];
     $deleteSQL = "DELETE FROM bagian WHERE id = $id";
     $resultDelete = mysqli_query($connection, $deleteSQL);
     if (!$resultDelete) { ?>
       <div class="alert alert-danger" role="alert">
         <i class="fa fa-exclamation-circle"></i>
-        <?php echo mysqli_error($connection) ?>
-      </div> <?php
-    } else { ?>
+        <?php echo mysqli_error($connection); ?>
+      </div> <?php } else { ?>
       <div class="alert alert-success" role="alert">
         <i class="fa fa-check-circle"></i>
         Hapus data berhasil
       </div>
-      <meta http-equiv="refresh" content="2;url=?page=bagian"> <?php
-    }
+      <meta http-equiv="refresh" content="2;url=?page=bagian"> <?php }
     ?>
   </div>
 </div>

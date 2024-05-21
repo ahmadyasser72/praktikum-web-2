@@ -1,7 +1,7 @@
 <?php
-$id = $_GET['id'];
-$bulan = $_GET['bulan'];
-$tahun = $_GET['tahun'];
+$id = $_GET["id"];
+$bulan = $_GET["bulan"];
+$tahun = $_GET["tahun"];
 ?>
 
 <div id="top" class="row mb-3">
@@ -19,22 +19,20 @@ $tahun = $_GET['tahun'];
   <div class="col">
     <?php
     include "database/connection.php";
-    
+
     $sqlDelete = "DELETE FROM penggajian WHERE id = $id";
     $resultDelete = mysqli_query($connection, $sqlDelete);
     if (!$resultDelete) { ?>
       <div class="alert alert-danger" role="alert">
         <i class="fa fa-exclamation-circle"></i>
-        <?php echo mysqli_error($connection) ?>
-      </div> <?php
-    } else { ?>
+        <?php echo mysqli_error($connection); ?>
+      </div> <?php } else { ?>
       <div class="alert alert-success" role="alert">
         <i class="fa fa-check-circle"></i>
         Hapus data berhasil
       </div>
       <meta http-equiv="refresh" content="2;url=?page=penggajian&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>">
-      <?php
-    }
+      <?php }
     ?>
   </div>
 </div>

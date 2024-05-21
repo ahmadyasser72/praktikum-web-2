@@ -1,6 +1,5 @@
 <?php
-include "database/connection.php";
-?>
+include "database/connection.php"; ?>
 
 <div class="row">
   <div class="col">
@@ -16,22 +15,18 @@ include "database/connection.php";
 <div class="row mt-3">
   <div class="col">
     <?php
-      $selectSQL = "SELECT * FROM bagian";
-      $result = mysqli_query($connection, $selectSQL);
-      if (!$result) { ?>
+    $selectSQL = "SELECT * FROM bagian";
+    $result = mysqli_query($connection, $selectSQL);
+    if (!$result) { ?>
         <div class="alert alert-danger" role="alert">
-          <?php echo mysqli_error($connection) ?>
-        </div> <?php 
-        return;
-      } 
+          <?php echo mysqli_error($connection); ?>
+        </div> <?php return;}
 
-      if (mysqli_num_rows($result) == 0) { ?>
+    if (mysqli_num_rows($result) == 0) { ?>
         <div class="alert alert-light" role="alert">
           Data kosong
         </div>
-        <?php
-        return;
-      }
+        <?php return;}
     ?>
 
     <table class="table bg-white rounded shadow-sm table-hover">
@@ -46,22 +41,24 @@ include "database/connection.php";
         $n = 1;
         while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr class="align-middle">
-          <th> <?php echo $n++ ?> </th>
-          <td> <?php echo $row["nama"] ?> </td>
+          <th> <?php echo $n++; ?> </th>
+          <td> <?php echo $row["nama"]; ?> </td>
           <td>
-            <a href="?page=bagianubah&id=<?php echo $row['id'] ?>" class="btn btn-primary">
+            <a href="?page=bagianubah&id=<?php echo $row[
+                "id"
+            ]; ?>" class="btn btn-primary">
               <i class="fa fa-edit"></i>
               Ubah
             </a>
-            <a href="?page=bagianhapus&id=<?php echo $row['id'] ?>"
+            <a href="?page=bagianhapus&id=<?php echo $row["id"]; ?>"
                onclick="javascript: return confirm('Konfirmasi data akan dihapus?')"
                class="btn btn-danger">
               <i class="fa fa-trash"></i>
               Hapus
             </a>
           </td>
-        </tr> <?php
-        } ?>
+        </tr> <?php }
+        ?>
       </tbody>
     </table>
   </div>

@@ -20,18 +20,18 @@
     <?php
     include "database/connection.php";
 
-    $bulan = $_GET['bulan'];
-    $tahun = $_GET['tahun'];
+    $bulan = $_GET["bulan"];
+    $tahun = $_GET["tahun"];
 
     if ($bulan == "Semua" && $tahun == "Semua") {
-      $selectSQL = "SELECT P.*, K.nama FROM penggajian AS P
+        $selectSQL = "SELECT P.*, K.nama FROM penggajian AS P
         LEFT JOIN karyawan AS K ON P.karyawan_nik = K.nik";
-    } else if ($bulan == "Semua" && $tahun != "Semua") {
-      $selectSQL = "SELECT P.*, K.nama FROM penggajian AS P
+    } elseif ($bulan == "Semua" && $tahun != "Semua") {
+        $selectSQL = "SELECT P.*, K.nama FROM penggajian AS P
         LEFT JOIN karyawan AS K ON P.karyawan_nik = K.nik
         WHERE tahun = $tahun";
-    } else if ($bulan != "Semua" && $tahun != "Semua") {
-      $selectSQL = "SELECT P.*, K.nama FROM penggajian AS P
+    } elseif ($bulan != "Semua" && $tahun != "Semua") {
+        $selectSQL = "SELECT P.*, K.nama FROM penggajian AS P
         LEFT JOIN karyawan AS K ON P.karyawan_nik = K.nik
         WHERE tahun = $tahun AND bulan = $bulan";
     }
@@ -39,16 +39,13 @@
     $resultSelect = mysqli_query($connection, $selectSQL);
     if (!$resultSelect) { ?>
       <div class="alert alert-danger" role="alert">
-        <?php echo mysqli_error($connection) ?>
-      </div> <?php
-      return;
-    }
+        <?php echo mysqli_error($connection); ?>
+      </div> <?php return;}
 
     if (mysqli_num_rows($resultSelect) == 0) { ?>
       <div class="alert alert-danger" role="alert">
         Data Kosong
-      </div> <?php
-    }
+      </div> <?php }
     ?>
 
     <table class="table bg-white rounded shadow-sm table-hover">
@@ -67,21 +64,24 @@
         $n = 1;
         while ($row = mysqli_fetch_assoc($resultSelect)) { ?>
           <tr class="align-middle">
-            <th scope="row"> <?php echo $row['karyawan_nik'] ?> </th>
-            <td> <?php echo $row['nama'] ?> </td>
-            <td> <?php echo $row['bulan'] ?> </td>
-            <td> <?php echo $row['tahun'] ?> </td>
-            <td class="text-end"> <?php echo number_format($row['gaji_bayar']) ?> </td>
+            <th scope="row"> <?php echo $row["karyawan_nik"]; ?> </th>
+            <td> <?php echo $row["nama"]; ?> </td>
+            <td> <?php echo $row["bulan"]; ?> </td>
+            <td> <?php echo $row["tahun"]; ?> </td>
+            <td class="text-end"> <?php echo number_format(
+                $row["gaji_bayar"]
+            ); ?> </td>
             <td>
-              <a href="?page=penggajianhapus&id=<?= $row['id'] ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>"
+              <a href="?page=penggajianhapus&id=<?= $row[
+                  "id"
+              ] ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>"
               onclick="javascript: return confirm('Konfirmasi data akan dihapus?');"
               class="btn btn-danger">
                 <i class="fa fa-trash"></i>
                 Hapus
               </a>
             </td>
-          </tr> <?php
-        }
+          </tr> <?php }
         ?>
       </tbody>
     </table>

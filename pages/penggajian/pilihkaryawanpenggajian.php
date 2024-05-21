@@ -19,17 +19,13 @@
     $resultSelect = mysqli_query($connection, $selectSQL);
     if (!$resultSelect) { ?>
       <div class="alert alert-danger" role="alert">
-        <?php echo mysqli_error($resultSelect) ?>
-      </div> <?php
-      return;
-    }
+        <?php echo mysqli_error($resultSelect); ?>
+      </div> <?php return;}
 
     if (mysqli_num_rows($resultSelect) == 0) { ?>
       <div class="alert alert-danger" role="alert">
         Data kosong
-      </div> <?php
-      return;
-    }
+      </div> <?php return;}
     ?>
 
     <table class="table bg-white rounded shadow-sm table-hover">
@@ -47,18 +43,19 @@
         $n = 1;
         while ($row = mysqli_fetch_assoc($resultSelect)) { ?>
           <tr class="align-middle">
-            <th scope="row"> <?php echo $row['nik'] ?> </th>
-            <td> <?php echo $row['nama'] ?> </td>
-            <td> <?php echo $row['nama_bagian'] ?> </td>
-            <td class="text-end"> <?php echo $row['gaji_pokok'] ?> </td>
+            <th scope="row"> <?php echo $row["nik"]; ?> </th>
+            <td> <?php echo $row["nama"]; ?> </td>
+            <td> <?php echo $row["nama_bagian"]; ?> </td>
+            <td class="text-end"> <?php echo $row["gaji_pokok"]; ?> </td>
             <td>
-              <a href="?page=penggajiantambah&nik=<?= $row['nik'] ?>" class="btn btn-success">
+              <a href="?page=penggajiantambah&nik=<?= $row[
+                  "nik"
+              ] ?>" class="btn btn-success">
                 <i class="fa fa-arrow-circle-right"></i>
                 Pilih
               </a>
             </td>
-          </tr> <?php
-        }
+          </tr> <?php }
         ?>
       </tbody>
     </table>
